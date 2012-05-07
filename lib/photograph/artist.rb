@@ -6,6 +6,14 @@ module Photograph
     attr_accessor :url, :options
     attr_reader :image
 
+    def self.browser
+      @browser ||= Capybara::Session.new :webkit
+    end
+
+    def browser
+      self.class.browser
+    end
+
     def initialize url, options={:x => 0, :y => 0, :w => 1024, :h => 768}
       @url, @options = url, options
     end
@@ -15,12 +23,11 @@ module Photograph
     end
 
     def capture
-      session = Capybara::Session.new :webkit
-      session.visit @url
+      browser.visit @url
 
       @tempfile_path = Tempfile.new(['photograph','.png'])
 
-      session.driver.render @tempfile_path.path,
+      browser.driver.render @tempfile_path.path,
         :width => options[:w],
         :height => options[:h]
 
@@ -41,4 +48,7 @@ module Photograph
       @tempfile_path.unlink
     end
   end
+
+  Artist.browser
 end
+
