@@ -58,7 +58,7 @@ Contributors :
 
 * Jean-Hadrien Chabran
 
-The names and logos for thoughtbot are trademarks of Tactilize.
+The names and logos for Tactilize are trademarks of Tactilize.
 
 ## License
 
