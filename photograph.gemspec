@@ -4,9 +4,9 @@ require File.expand_path('../lib/photograph/version', __FILE__)
 Gem::Specification.new do |gem|
   gem.authors       = ["JH. Chabran"]
   gem.email         = ["jh@chabran.fr"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
-  gem.homepage      = ""
+  gem.description   = %q{Webservice that screenshots any url}
+  gem.summary       = %q{Webservice that screenshots any url}
+  gem.homepage      = "https://github.com/TactilizeTeam/photograph"
 
   gem.files         = `git ls-files`.split($\)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
