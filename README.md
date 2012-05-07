@@ -48,3 +48,18 @@ class or by its little sinata app.
 3. Commit your changes (`git commit -am 'Added some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
+## Credits
+
+
+Shoulda is maintained and funded by Tactilize.
+
+Contributors : 
+
+* Jean-Hadrien Chabran
+
+The names and logos for thoughtbot are trademarks of Tactilize.
+
+## License
+
+Photograph is Copyright © 2012 Tactilize. It is free software, and may be redistributed under the terms specified in the MIT-LICENSE file.
