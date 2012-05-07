@@ -10,7 +10,7 @@ module Photograph
     end
 
     get '/shoot' do
-      artist = Artist.new params[:url]
+      artist = Artist.new params
       artist.shoot!
 
       send_file artist.image.path,

@@ -3,7 +3,7 @@ require 'mini_magick'
 
 module Photograph
   class Artist
-    attr_accessor :url, :options
+    attr_accessor :options
     attr_reader :image
 
     def self.browser
@@ -14,8 +14,8 @@ module Photograph
       self.class.browser
     end
 
-    def initialize url, options={:x => 0, :y => 0, :w => 1024, :h => 768}
-      @url, @options = url, options
+    def initialize options={:x => 0, :y => 0}
+      @options = options
     end
 
     def shoot!
@@ -23,12 +23,12 @@ module Photograph
     end
 
     def capture
-      browser.visit @url
+      browser.visit @options[:url]
 
       @tempfile_path = Tempfile.new(['photograph','.png'])
 
       browser.driver.render @tempfile_path.path,
-        :width => options[:w],
+        :width  => options[:w],
         :height => options[:h]
 
       @image = adjust_image
@@ -36,15 +36,18 @@ module Photograph
 
     def adjust_image
       image = MiniMagick::Image.read @tempfile_path
-      #      image.crop options[:x].to_s, options[:y].to_s,
-      #           options[:w].to_s, options[:h].to_s
-      image.write @tempfile_path
+
+      if options[:h] && options[:w]
+        image.crop "#{options[:x]}x#{options[:y]}+#{options[:w]}+#{options[:h]}"
+
+        image.write @tempfile_path
+
+      end
 
       image
     end
 
     def clean!
-      `cat #{@tempfile_path}`
       @tempfile_path.unlink
     end
   end
