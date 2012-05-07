@@ -1,6 +1,20 @@
 # Photograph
 
-TODO: Write a gem description
+Photograph solves the issue of generating previews or thumbnails of
+web-based documents. Think of generating a preview of a Google
+Spreadsheet. As a such document is dom based, it may be difficult to get a preview
+that truly reflects the original content. 
+
+Photograph solves that problem by firing a chrome instance thanks to
+capybara-webkit and sinatra to provides an easy way to interface it to
+your needs. 
+
+Obviously, it supports cropping to avoid reworking the image afterward.
+
+Please remind that having a chrome instance, even if it is being reused
+by all requests is still taking some time, aroung 600ms after the first 
+request on my development machine. *Consider using photograph only if
+you expect the same exact rendering of your 'web documents'*.
 
 ## Installation
 
@@ -18,7 +32,14 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Photograph can be used either directly through the Photograph::Artist
+class or by its little sinata app. 
+
+    @artist = Photograph::Artist.new("http://github.com")
+    @artist.shoot!
+
+    @artist.image
+    # => MiniMagick instance you can toy with
 
 ## Contributing
 
