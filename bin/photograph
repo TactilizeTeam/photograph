@@ -1,0 +1,25 @@
+#! /usr/bin/env ruby
+
+require "rubygems"
+require "bundler/setup"
+
+require 'optparse'
+require 'thin'
+
+require 'photograph'
+
+options = {}
+OptionParser.new do |opts|
+  opts.banner = "Usage : photograph [options]"
+  
+  opts.on "-h", "--host HOST", "Listen on the specified host" do 
+    options[:host] = host
+  end
+  opts.on "-p", "--port PORT", "Listen on the specified port" do 
+    options[:port] = port
+  end
+end
+
+Thin::Server.start options[:host], options[:port] do
+  run Photograph::Service.new
+end
