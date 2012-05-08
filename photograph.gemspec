@@ -19,4 +19,6 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'mini_magick'
   gem.add_dependency 'sinatra'
   gem.add_dependency 'sinatra-contrib'
+
+  gem.add_development_dependency 'rspec', '~> 2.6'
 end

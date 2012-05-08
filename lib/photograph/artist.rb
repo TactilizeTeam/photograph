@@ -6,6 +6,8 @@ module Photograph
     attr_accessor :options
     attr_reader :image
 
+    MissingUrlError = Class.new(Exception)
+
     def self.browser
       @browser ||= Capybara::Session.new :webkit
     end
@@ -14,8 +16,10 @@ module Photograph
       self.class.browser
     end
 
-    def initialize options={:x => 0, :y => 0}
-      @options = options
+    def initialize options={}
+      raise MissingUrlError unless options[:url]
+
+      @options = {:x => 0, :y => 0, :w => 1280, :h => 1024}.merge(options)
     end
 
     def shoot!
@@ -28,8 +32,8 @@ module Photograph
       @tempfile_path = Tempfile.new(['photograph','.png'])
 
       browser.driver.render @tempfile_path.path,
-        :width  => options[:w],
-        :height => options[:h]
+        :width  => options[:w] + options[:x],
+        :height => options[:h] + options[:y]
 
       @image = adjust_image
     end
