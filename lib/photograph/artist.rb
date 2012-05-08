@@ -42,7 +42,7 @@ module Photograph
       image = MiniMagick::Image.read @tempfile_path
 
       if options[:h] && options[:w]
-        image.crop "#{options[:x]}x#{options[:y]}+#{options[:w]}+#{options[:h]}"
+        image.crop "#{options[:w]}x#{options[:h]}+#{options[:x]}+#{options[:y]}"
 
         image.write @tempfile_path
 

@@ -13,7 +13,11 @@ module Photograph
     end
 
     get '/shoot' do
-      artist = Artist.new params
+      artist = Artist.new :url => params["url"],
+                          :x   => params["x"].to_i,
+                          :y   => params["y"].to_i,
+                          :w   => params["w"].to_i,
+                          :h   => params["h"].to_i
       artist.shoot!
 
       send_file artist.image.path,
