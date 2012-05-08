@@ -2,6 +2,9 @@ require 'sinatra/base'
 require 'sinatra/json'
 
 module Photograph
+  # Preload the chrome instance
+  Artist.browser
+
   class Service < ::Sinatra::Base
     helpers Sinatra::JSON
 

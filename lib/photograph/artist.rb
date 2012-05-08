@@ -55,7 +55,5 @@ module Photograph
       @tempfile_path.unlink
     end
   end
-
-  Artist.browser
 end
 
