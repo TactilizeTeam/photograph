@@ -41,6 +41,10 @@ class or by its little sinata app.
     @artist.image
     # => MiniMagick instance you can toy with
 
+Or 
+
+    $ bundle exec photograph -h 127.0.0.1 -p 4567
+
 ## Contributing
 
 1. Fork it
