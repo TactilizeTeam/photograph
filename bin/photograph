@@ -8,17 +8,18 @@ require 'thin'
 
 require 'photograph'
 
-options = {}
+options = {:port => 3001, :host => "127.0.0.1"}
+
 OptionParser.new do |opts|
   opts.banner = "Usage : photograph [options]"
   
-  opts.on "-h", "--host HOST", "Listen on the specified host" do 
+  opts.on "-h", "--host HOST", "Listen on the specified host" do |host|
     options[:host] = host
   end
-  opts.on "-p", "--port PORT", "Listen on the specified port" do 
-    options[:port] = port
+  opts.on "-p", "--port PORT", "Listen on the specified port" do |port|
+    options[:port] = port.to_i
   end
-end
+end.parse!
 
 Thin::Server.start options[:host], options[:port] do
   run Photograph::Service.new
