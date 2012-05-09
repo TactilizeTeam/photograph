@@ -29,9 +29,9 @@ module Photograph
     def capture
       browser.visit @options[:url]
 
-      @tempfile_path = Tempfile.new(['photograph','.png'])
+      @tempfile = Tempfile.new(['photograph','.png'])
 
-      browser.driver.render @tempfile_path.path,
+      browser.driver.render @tempfile.path,
         :width  => options[:w] + options[:x],
         :height => options[:h] + options[:y]
 
@@ -39,12 +39,12 @@ module Photograph
     end
 
     def adjust_image
-      image = MiniMagick::Image.read @tempfile_path
+      image = MiniMagick::Image.read @tempfile
 
       if options[:h] && options[:w]
         image.crop "#{options[:w]}x#{options[:h]}+#{options[:x]}+#{options[:y]}"
 
-        image.write @tempfile_path
+        image.write @tempfile
 
       end
 
@@ -52,7 +52,7 @@ module Photograph
     end
 
     def clean!
-      @tempfile_path.unlink
+      @tempfile.unlink
     end
   end
 end
