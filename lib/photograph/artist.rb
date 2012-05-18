@@ -7,6 +7,15 @@ module Photograph
     attr_reader :image
 
     MissingUrlError = Class.new(Exception)
+    DefaultOptions  = {
+      :x => 0,          # top left position
+      :y => 0,
+      :w => 1280,       # bottom right position
+      :h => 1024,
+
+      :wait => 1,       # if selector is nil, wait 1 seconds before taking the screenshot
+      :selector => nil  # wait until the selector matches to take the screenshot
+    }
 
     def self.browser
       @browser ||= Capybara::Session.new :webkit
@@ -19,7 +28,7 @@ module Photograph
     def initialize options={}
       raise MissingUrlError unless options[:url]
 
-      @options = {:x => 0, :y => 0, :w => 1280, :h => 1024}.merge(options)
+      @options = DefaultOptions.merge(options)
     end
 
     def shoot!
@@ -28,6 +37,17 @@ module Photograph
 
     def capture
       browser.visit @options[:url]
+
+      if @options[:selector]
+        puts "selector"
+        browser.has_content? @options[:selector]
+      else
+        puts "wait"
+        puts Time.now
+        sleep @options[:wait]
+        puts Time.now
+        puts browser.driver.console_messages
+      end
 
       @tempfile = Tempfile.new(['photograph','.png'])
 

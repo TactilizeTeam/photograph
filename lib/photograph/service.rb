@@ -17,7 +17,10 @@ module Photograph
                           :x   => params["x"].to_i,
                           :y   => params["y"].to_i,
                           :w   => params["w"].to_i,
-                          :h   => params["h"].to_i
+                          :h   => params["h"].to_i,
+                          :wait => params["wait"].to_i,
+                          :selector => params["selector"]
+
       artist.shoot!
 
       send_file artist.image.path,
