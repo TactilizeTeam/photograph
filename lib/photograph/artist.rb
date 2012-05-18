@@ -1,6 +1,9 @@
 require 'capybara-webkit'
 require 'mini_magick'
 
+
+Capybara.default_wait_time = 5
+
 module Photograph
   class Artist
     attr_accessor :options
@@ -39,14 +42,11 @@ module Photograph
       browser.visit @options[:url]
 
       if @options[:selector]
-        puts "selector"
-        browser.has_content? @options[:selector]
+        browser.wait_until do
+          browser.has_css? @options[:selector]
+        end
       else
-        puts "wait"
-        puts Time.now
         sleep @options[:wait]
-        puts Time.now
-        puts browser.driver.console_messages
       end
 
       @tempfile = Tempfile.new(['photograph','.png'])

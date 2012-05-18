@@ -56,7 +56,7 @@ Or
 ## Credits
 
 
-Shoulda is maintained and funded by Tactilize.
+Photograph is maintained and funded by Tactilize.
 
 Contributors : 
 
