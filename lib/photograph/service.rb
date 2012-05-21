@@ -18,7 +18,7 @@ module Photograph
                           :y   => params["y"].to_i,
                           :w   => params["w"].to_i,
                           :h   => params["h"].to_i,
-                          :wait => params["wait"].to_i,
+                          :wait => params["wait"].to_f,
                           :selector => params["selector"]
 
       artist.shoot!

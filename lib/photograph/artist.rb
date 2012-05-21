@@ -16,7 +16,7 @@ module Photograph
       :w => 1280,       # bottom right position
       :h => 1024,
 
-      :wait => 1,       # if selector is nil, wait 1 seconds before taking the screenshot
+      :wait => 0.5,     # if selector is nil, wait 1 seconds before taking the screenshot
       :selector => nil  # wait until the selector matches to take the screenshot
     }
 
