@@ -2,7 +2,7 @@ require 'capybara-webkit'
 require 'mini_magick'
 
 
-Capybara.default_wait_time = 5
+Capybara.default_wait_time = 15
 
 module Photograph
   class Artist
