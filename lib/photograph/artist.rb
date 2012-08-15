@@ -1,4 +1,4 @@
-require 'capybara-webkit'
+require 'capybara/poltergeist'
 require 'mini_magick'
 
 
@@ -21,7 +21,7 @@ module Photograph
     }
 
     def self.browser
-      @browser ||= Capybara::Session.new :webkit
+      @browser ||= Capybara::Session.new :poltergeist
     end
 
     def browser

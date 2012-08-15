@@ -15,7 +15,7 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
   gem.version       = Photograph::VERSION
 
-  gem.add_dependency 'capybara-webkit'
+  gem.add_dependency 'poltergeist'
   gem.add_dependency 'mini_magick'
   gem.add_dependency 'sinatra'
   gem.add_dependency 'sinatra-contrib'
